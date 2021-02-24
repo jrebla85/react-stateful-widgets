@@ -46,19 +46,23 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from 'react'; /* STEP 0 */
 
 export default function Counter() {
-  /* STEP 1 */
+  const [count, setCount] = useState(0)
 
   const increment = () => {
-    /* STEP 4 */
+    /* STEP 4 This click handler needs to use 'setCount' to schedule the 'count' to become the current 'count' plus one.
+  These state changes are not synchronous: the updated count arrives on the next run of the Counter component.
+  Do NOT simply do count++. The plus plus is forbidden! We never mutate a slice of state in place. Even if you could
+  reassign a const, React would not be aware anything changed. Always use the state updater, passing in a new value.*/
+  setCount(count + 1)
   };
   const decrement = () => {
-    /* STEP 5 */
+    setCount(count - 1)
   };
   const reset = () => {
-    /* STEP 6 */
+    setCount(count - count)
   };
 
   const style = {
@@ -71,7 +75,7 @@ export default function Counter() {
     <div className='widget-counter container'>
       <h2>Counter</h2>
       <div id='count' style={style}>
-        Number 0 is even {/* STEP 3 */}
+        Number {count} is {{count} === 'even' ? 'even': 'odd' }
       </div>
       <div>
         <button id='increment' onClick={increment}>Increment</button>
