@@ -62,20 +62,20 @@ export default function Counter() {
     setCount(count - 1)
   };
   const reset = () => {
-    setCount(count - count)
+    setCount(0)
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: count % 2 == 0 ? 'royalblue' : 'crimson'
   };
 
   return (
     <div className='widget-counter container'>
       <h2>Counter</h2>
       <div id='count' style={style}>
-        Number {count} is {{count} === 'even' ? 'even': 'odd' }
+      Number {count} is {count % 2 == 0 ? "even" : "odd"}
       </div>
       <div>
         <button id='increment' onClick={increment}>Increment</button>
